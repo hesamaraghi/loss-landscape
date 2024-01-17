@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "plot_surface.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--x=-1:1:51",
+                "--model",
+                "resnet56",
+                "--model_file",
+                "cifar10/trained_nets/resnet56_sgd_lr=0.1_bs=128_wd=0.0005/model_300.t7",
+                "--dir_type",
+                "states",
+                "--xnorm",
+                "filter",
+                "--xignore",
+                "biasbn"
+            ],
+        }
+    ]
+}
