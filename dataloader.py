@@ -10,12 +10,8 @@ def get_relative_path(file):
     return os.path.join(script_dir, file)
 
 
-
-# TODO: #45
-# gdm = GraphDataModule(cfgs[0])
-# for cfg in cfgs:
-#     cfg.dataset.num_classes = gdm.num_classes
-
+# Solved:
+# by using loading dataloaders from a files
 
 
 def load_dataset(dataset='cifar10', datapath='cifar10/data', batch_size=128, \
