@@ -10,6 +10,14 @@ def get_relative_path(file):
     return os.path.join(script_dir, file)
 
 
+
+# TODO: #45
+# gdm = GraphDataModule(cfgs[0])
+# for cfg in cfgs:
+#     cfg.dataset.num_classes = gdm.num_classes
+
+
+
 def load_dataset(dataset='cifar10', datapath='cifar10/data', batch_size=128, \
                  threads=2, raw_data=False, data_split=1, split_idx=0, \
                  trainloader_path="", testloader_path=""):

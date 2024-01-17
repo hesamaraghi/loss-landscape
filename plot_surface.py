@@ -101,6 +101,9 @@ def crunch(surf_file, net, w, s, d, dataloader, loss_key, acc_key, comm, rank, a
     start_time = time.time()
     total_sync = 0.0
 
+    #TODO: #45
+    # the loss function is hard coded here
+    
     criterion = nn.CrossEntropyLoss()
     if args.loss_name == 'mse':
         criterion = nn.MSELoss()

@@ -9,6 +9,9 @@ import torch.nn.functional as F
 import time
 from torch.autograd.variable import Variable
 
+#TODO #45
+# make compatible with pytorch-lightning
+
 def eval_loss(net, criterion, loader, use_cuda=False):
     """
     Evaluate the loss value for a given 'net' on the dataset provided by the loader.
