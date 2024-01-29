@@ -209,7 +209,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    torch.manual_seed(123)
+    # torch.manual_seed(123)
     #--------------------------------------------------------------------------
     # Environment setup
     #--------------------------------------------------------------------------
@@ -301,6 +301,6 @@ if __name__ == '__main__':
         if args.y and args.proj_file:
             plot_2D.plot_contour_trajectory(surf_file, dir_file, args.proj_file, 'train_loss', args.show)
         elif args.y:
-            plot_2D.plot_2d_contour(surf_file, 'train_loss', args.vmin, args.vmax, args.vlevel, args.show)
+            plot_2D.plot_2d_contour(surf_file, 'test_loss', args.vmin, args.vmax, args.vlevel, args.show)
         else:
             plot_1D.plot_1d_loss_err(surf_file, args.xmin, args.xmax, args.loss_max, args.log, args.show)
