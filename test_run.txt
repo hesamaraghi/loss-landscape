@@ -7,4 +7,48 @@ python plot_surface.py --x=-1:1:51 --model resnet56 --model_file cifar10/trained
 
 
 
-python loss-landscape/plot_surface.py --x=-1:1:51 --model_file model.pt --cuda --dir_type states --xnorm filter --xignore biasbn --testloader "testloader.pt"
+
+python loss-landscape/plot_surface.py --plot --log --x=-1:1:51 --dataset from_file --model EST --model_folder landscape_plots/EST_FAN1VS3_1024_good --model_file landscape_plots/EST_FAN1VS3_1024_good/state_dict.pt --cuda --dir_type states --xnorm filter --xignore biasbn --testloader landscape_plots/EST_FAN1VS3_1024_good/testloader.pt --trainloader landscape_plots/EST_FAN1VS3_1024_good/trainloader.pt
+
+
+python loss-landscape/plot_surface.py --plot --log --x=-1:1:51 --dataset from_file --model EST \
+--model_folder landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092 --model_file landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/state_dict.pt \
+--cuda --dir_type states --xnorm filter --xignore biasbn --testloader landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/testloader.pt \
+--trainloader landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/trainloader.pt
+
+python loss-landscape/plot_surface.py --plot --log --cuda --x=-1:1:51 --y=-1:1:51 --dataset from_file \
+--model EST --model_folder landscape_plots/EST_FAN1VS3_1024_good --model_file landscape_plots/EST_FAN1VS3_1024_good/state_dict.pt \
+--testloader landscape_plots/EST_FAN1VS3_1024_good/testloader.pt --trainloader landscape_plots/EST_FAN1VS3_1024_good/trainloader.pt \
+--dir_type weights --xignore biasbn --xnorm filter --yignore biasbn --ynorm filter
+
+python loss-landscape/plot_surface.py --plot --log --cuda --x=-1:1:51 --y=-1:1:51 --dataset from_file \
+--model EST --model_folder landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092 --model_file landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/state_dict.pt \
+--testloader landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/testloader.pt --trainloader landscape_plots/EST_FAN1VS3_1024_i8ng54ek_092/trainloader.pt \
+--dir_type weights --xignore biasbn --xnorm filter --yignore biasbn --ynorm filter
+
+python loss-landscape/plot_surface.py --plot --log --cuda --mpi --x=-1:1:51 --y=-1:1:51 --dataset from_file --model EST \
+--dir_type weights --xignore biasbn --xnorm filter --yignore biasbn --ynorm filter \
+--model_folder landscape_plots/EST_NCALTECH101_1024_vzjrvjlz \
+--model_file landscape_plots/EST_NCALTECH101_1024_vzjrvjlz/state_dict.pt \
+--testloader landscape_plots/EST_NCALTECH101_1024_vzjrvjlz/testloader.pt \
+--trainloader landscape_plots/EST_NCALTECH101_1024_vzjrvjlz/trainloader.pt
+
+sbatch loss-landscape/run_train.sbatch \
+python loss-landscape/plot_surface.py --plot --log --cuda --mpi --dataset from_file --model EST \
+--x=-1:1:101 \
+--dir_type states --xignore biasbn --xnorm filter \
+--model_folder landscape_plots/EST_FAN1VS3_1024_good_2 \
+--model_file landscape_plots/EST_FAN1VS3_1024_good_2/state_dict.pt \
+--testloader landscape_plots/EST_FAN1VS3_1024_good_2/testloader.pt \
+--trainloader landscape_plots/EST_FAN1VS3_1024_good_2/trainloader.pt
+
+sbatch loss-landscape/run_train.sbatch \
+python loss-landscape/plot_surface.py --log --cuda --mpi --dataset from_file --model EST \
+--x=-1:1:101 \
+--dir_type states --xignore biasbn --xnorm filter \
+--dir_file landscape_plots/EST_NCALTECH101_25000_olll9l3a/state_dict.pt_states_xignore=biasbn_xnorm=filter.h5 \
+--model_folder landscape_plots/EST_NCALTECH101_25000_olll9l3a \
+--model_file landscape_plots/EST_NCALTECH101_25000_olll9l3a/state_dict.pt \
+--testloader landscape_plots/EST_NCALTECH101_25000_olll9l3a/testloader.pt \
+--trainloader landscape_plots/EST_NCALTECH101_25000_olll9l3a/trainloader.pt \
+--surf_file landscape_plots/EST_NCALTECH101_25000_olll9l3a/multiple_train_loss_1.h5
