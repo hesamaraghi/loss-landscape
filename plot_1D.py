@@ -62,7 +62,7 @@ def plot_1d_loss_err(surf_file, xmin=-1.0, xmax=1.0, loss_max=5, log=False, show
     if log:
         pp.semilogy(x, train_loss)
     else:
-        pp.plot(x, train_loss)
+        pp.plot(x, train_loss,'o-')
     pp.ylabel('Training Loss', fontsize='xx-large')
     pp.xlim(xmin, xmax)
     pp.ylim(0, loss_max)
@@ -93,20 +93,20 @@ def plot_1d_loss_err_repeat(prefix, idx_min=1, idx_max=10, xmin=-1.0, xmax=1.0,
     for idx in range(idx_min, idx_max + 1):
         # The file format should be prefix_{idx}.h5
         f = h5py.File(prefix + '_' + str(idx) + '.h5','r')
-
+        print(idx)
         x = f['xcoordinates'][:]
         train_loss = f['train_loss'][:]
         train_acc = f['train_acc'][:]
-        test_loss = f['test_loss'][:]
-        test_acc = f['test_acc'][:]
+        # test_loss = f['test_loss'][:]
+        # test_acc = f['test_acc'][:]
 
         xmin = xmin if xmin != -1.0 else min(x)
         xmax = xmax if xmax != 1.0 else max(x)
 
-        tr_loss, = ax1.plot(x, train_loss, 'b-', label='Training loss', linewidth=1)
-        te_loss, = ax1.plot(x, test_loss, 'b--', label='Testing loss', linewidth=1)
-        tr_acc, = ax2.plot(x, train_acc, 'r-', label='Training accuracy', linewidth=1)
-        te_acc, = ax2.plot(x, test_acc, 'r--', label='Testing accuracy', linewidth=1)
+        tr_loss, = ax1.plot(x, train_loss, 'b-', label=f'Training loss {idx}', linewidth=1)
+        # te_loss, = ax1.plot(x, test_loss, 'b--', label='Testing loss', linewidth=1)
+        tr_acc, = ax2.plot(x, train_acc, 'r-', label=f'Training accuracy {idx}', linewidth=1)
+        # te_acc, = ax2.plot(x, test_acc, 'r--', label='Testing accuracy', linewidth=1)
 
     pp.xlim(xmin, xmax)
     ax1.set_ylabel('Loss', color='b', fontsize='xx-large')
@@ -116,6 +116,9 @@ def plot_1d_loss_err_repeat(prefix, idx_min=1, idx_max=10, xmin=-1.0, xmax=1.0,
     ax2.set_ylabel('Accuracy', color='r', fontsize='xx-large')
     ax2.tick_params('y', colors='r', labelsize='x-large')
     ax2.set_ylim(0, 100)
+    fig.legend(bbox_to_anchor=(1.7, 0.8), ncol=2)
+    # ax2.legend(loc='outside right upper', fontsize='small')
+    
     pp.savefig(prefix + '_1d_loss_err_repeat.pdf', dpi=300, bbox_inches='tight', format='pdf')
 
     if show: pp.show()
