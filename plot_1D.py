@@ -103,9 +103,9 @@ def plot_1d_loss_err_repeat(prefix, idx_min=1, idx_max=10, xmin=-1.0, xmax=1.0,
         xmin = xmin if xmin != -1.0 else min(x)
         xmax = xmax if xmax != 1.0 else max(x)
 
-        tr_loss, = ax1.plot(x, train_loss, 'b-', label=f'Training loss {idx}', linewidth=1)
+        tr_loss, = ax1.plot(x, train_loss, label=f'Training loss {idx}', linewidth=1)
         # te_loss, = ax1.plot(x, test_loss, 'b--', label='Testing loss', linewidth=1)
-        tr_acc, = ax2.plot(x, train_acc, 'r-', label=f'Training accuracy {idx}', linewidth=1)
+        # tr_acc, = ax2.plot(x, train_acc, 'r-', label=f'Training accuracy {idx}', linewidth=1)
         # te_acc, = ax2.plot(x, test_acc, 'r--', label='Testing accuracy', linewidth=1)
 
     pp.xlim(xmin, xmax)
@@ -113,9 +113,9 @@ def plot_1d_loss_err_repeat(prefix, idx_min=1, idx_max=10, xmin=-1.0, xmax=1.0,
     ax1.tick_params('y', colors='b', labelsize='x-large')
     ax1.tick_params('x', labelsize='x-large')
     ax1.set_ylim(0, loss_max)
-    ax2.set_ylabel('Accuracy', color='r', fontsize='xx-large')
-    ax2.tick_params('y', colors='r', labelsize='x-large')
-    ax2.set_ylim(0, 100)
+    # ax2.set_ylabel('Accuracy', color='r', fontsize='xx-large')
+    # ax2.tick_params('y', colors='r', labelsize='x-large')
+    # ax2.set_ylim(0, 100)
     fig.legend(bbox_to_anchor=(1.7, 0.8), ncol=2)
     # ax2.legend(loc='outside right upper', fontsize='small')
     
