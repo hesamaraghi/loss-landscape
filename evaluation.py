@@ -36,7 +36,7 @@ def eval_loss(net, criterion, loader, use_cuda=False):
 
     with torch.no_grad():
         if isinstance(loader, DataLoader):
-            assert isinstance(criterion, nn.CrossEntropyLoss), "Only CrossEntropyLoss is supported for PyG datasets"
+            assert isinstance(criterion, nn.CrossEntropyLoss) or isinstance(criterion,nn.NLLLoss), "Only CrossEntropyLoss or NLLLoss is supported for PyG datasets"
             for data in loader:
                 batch_size = len(data.y)
                 total += batch_size

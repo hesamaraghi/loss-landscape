@@ -107,6 +107,11 @@ def crunch(surf_file, net, w, s, d, dataloader, loss_key, acc_key, comm, rank, a
     criterion = nn.CrossEntropyLoss()
     if args.loss_name == 'mse':
         criterion = nn.MSELoss()
+    if args.loss_name == 'nll':
+        print(50*'*')
+        print('Using NLLLoss')
+        print(50*'*')
+        criterion = nn.NLLLoss()
 
     # Loop over all uncalculated loss values
     for count, ind in enumerate(inds):
